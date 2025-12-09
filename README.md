@@ -12,6 +12,10 @@ Resumo rápido
 
 ## Estrutura do repositório / notebook
 
+Para este estudo, utilizei os dados que extraí e tratei no seguinte projeto:
+> [ETL Censo BigQuery - Mulheres Brasil](https://github.com/patriciacarbri/etl-censo-bigquery-mulheres-brasil)
+
+
 * `notebook.ipynb` — notebook principal com a análise (carregamento, tratamento, estatística e visualizações).
 * `data/` — local esperado dos *trusted* parquet:
 
@@ -20,6 +24,7 @@ Resumo rápido
 * `data/analysis_outputs/` — pasta onde o notebook grava tabelas e figuras (criada automaticamente).
 * `requirements.txt` — dependências Python (sugerido).
 * `README.md` — este arquivo.
+
 
 ---
 
@@ -44,12 +49,7 @@ Dependências principais usadas no notebook:
    ```bash
    jupyter lab notebook.ipynb
    ```
-3. (Opcional) executar de modo batch com papermill:
 
-   ```bash
-   papermill notebook.ipynb output.ipynb -p PATH_BQ data/censo_2022_trusted.parquet -p PATH_INEP data/inep_2022_trusted.parquet
-   ```
-4. Verifique saída em `data/analysis_outputs/`.
 
 ---
 
@@ -67,9 +67,7 @@ Dependências principais usadas no notebook:
 
 ## Principais outputs gerados
 
-* Tabelas consolidadas: `df_uf_stats.csv`, `df_desigualdade.csv`, `df_ranking_municipios.csv`
 * Gráficos salvos: treemap, heatmap de taxa por raça, ranking de gaps, mapas (se habilitados).
-  (Ver código nas células finais para nomes exatos / formatos.)
 
 ---
 
@@ -96,15 +94,6 @@ Dependências principais usadas no notebook:
 
 * O notebook usa `numpy.random.default_rng(seed)` nas simulações. Seed está fixado para reprodutibilidade (ver função `bootstrap_gap_simple`).
 * Filtragens e agregações estão explícitas nas células — executar na ordem preserva coerência dos objetos.
-
----
-
-## Próximos passos (sugestões práticas)
-
-* Verificar e corrigir a inconsistência nas somas por raça no INEP antes de análises raciais detalhadas.
-* Analisar gaps por **faixa etária** (ex.: 15–24, 25–34) para ver se padrão de gênero muda por coorte.
-* Construir dashboards interativos (Plotly Dash / Streamlit) para explorar município × raça × sexo.
-* Aplicar modelagem causal (ex.: regressões com controles socioeconômicos) para entender determinantes do gap.
 
 ---
 
